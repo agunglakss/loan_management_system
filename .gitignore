@@ -1,0 +1,26 @@
+########################### Ruby on Rails ##########################
+/.bundle
+/backend/.env*
+/backend/log/*
+/backend/tmp/*
+/backend!/log/.keep
+/backend!/tmp/.keep
+/backend/tmp/pids/*
+/backend!/tmp/pids/
+/backend!/tmp/pids/.keep
+/backend/storage/*
+/backend!/storage/.keep
+/backend/tmp/storage/*
+/backend!/tmp/storage/
+/backend!/tmp/storage/.keep
+/backend/config/master.key
+########################### Ruby on Rails ##########################
+
+############################ React Router ############################
+/frontend/.DS_Store
+/frontend/.env
+/frontend/node_modules/
+/frontend/.react-router/
+/frontend/build/
+/frontend/*.local
+############################ React Router ############################
