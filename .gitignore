@@ -16,11 +16,44 @@
 /backend/config/master.key
 ########################### Ruby on Rails ##########################
 
-############################ React Router ############################
+############################ Next JS ############################
+# dependencies
+/frontend/node_modules
+/frontend/.pnp
+/frontend/.pnp.*
+/frontend/.yarn/*
+/frontend/!.yarn/patches
+/frontend/!.yarn/plugins
+/frontend/!.yarn/releases
+/frontend/!.yarn/versions
+
+# testing
+/frontend/coverage
+
+# next.js
+/frontend/.next/
+/frontend/out/
+
+# production
+/frontend/build
+
+# misc
 /frontend/.DS_Store
-/frontend/.env
-/frontend/node_modules/
-/frontend/.react-router/
-/frontend/build/
-/frontend/*.local
-############################ React Router ############################
+/frontend/*.pem
+
+# debug
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+/frontend/.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+/frontend/.env*
+
+# vercel
+/frontend/.vercel
+
+# typescript
+/frontend/*.tsbuildinfo
+/frontend/next-env.d.ts
+############################ Next JS ############################

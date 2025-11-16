@@ -1,5 +1,5 @@
 class Api::V1::LoansController < ApplicationController
-  before_action :set_loan, only: [:show, :pickup, :return_book, :cancel]
+  before_action :set_loan, only: [ :show, :pickup, :return, :cancel ]
 
   def index
     loans = Loan.all.includes(:book, :borrower)
@@ -12,10 +12,14 @@ class Api::V1::LoansController < ApplicationController
   end
 
   def create
-    book = Book.find(params[:book_id])
-    borrower = Borrower.find(params[:borrower_id])
+    book_id = params[:book_id]
+    borrower_id = params[:borrower_id]
+    due_at = params[:due_at]
 
-    due_at = parse_datetime(params[:due_at])
+    book = Book.find(book_id)
+    borrower = Borrower.find(borrower_id)
+
+    due_at = parse_datetime(due_at)
     return render json: { error: "Invalid due_at" }, status: :unprocessable_entity unless due_at
 
     loan = Loans::ReserveService.call(
