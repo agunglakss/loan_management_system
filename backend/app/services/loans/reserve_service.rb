@@ -1,13 +1,13 @@
 module Loans
   class ReserveService
     def self.call(book:, borrower:, due_at:)
-      Loan.transaction do
+      ActiveRecord::Base.transaction do
         book.lock!
 
         raise ActiveRecord::RecordInvalid.new(book), "No books available" if book.available_count <= 0
 
         if Loan.active.where(borrower: borrower).exists?
-          raise ActiveRecord::RecordInvalid.new(Loan.new), "Borrower already has active loan"
+          raise ActiveRecord::RecordInvalid.new(borrower), "Borrower already has active loan"
         end
 
         borrowed_at = Time.current + 2.days
