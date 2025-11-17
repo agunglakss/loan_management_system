@@ -113,10 +113,10 @@ The API is available at `http://127.0.0.1:4000/api/v1/`
 
 ### Borrowers
 - `GET /api/v1/borrowers` - List all borrowers
-- `GET /api/v1/borrowers/:id` - Get a borrower
+- `GET /api/v1/borrowers/:id` - Get a borrower (On progress)
 - `POST /api/v1/borrowers` - Create a borrower
-- `PUT /api/v1/borrowers/:id` - Update a borrower
-- `DELETE /api/v1/borrowers/:id` - Delete a borrower
+- `PUT /api/v1/borrowers/:id` - Update a borrower (On progress)
+- `DELETE /api/v1/borrowers/:id` - Delete a borrower(On progress)
 
 ### Loans
 - `GET /api/v1/loans` - List all loans
