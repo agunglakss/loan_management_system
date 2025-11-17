@@ -1,6 +1,6 @@
 # Loan Management System
 
-A full-stack loan management system built with Rails API backend and Next.js frontend.
+A full-stack loan management system built with Ruby on Rails API backend and Next.js frontend.
 
 ## Technology Stack
 
@@ -145,4 +145,17 @@ bundle exec rspec
 
 - Backend (port 4000): Change in `backend/config/puma.rb` or set `PORT` environment variable
 - Frontend (port 3000): Next.js will automatically use the next available port
+
+
+### How To Use
+1. Ensure Publisher, Author, Book records exist (create if missing).
+2. Search books and choose one to reserve.
+3. User (or staff) fills borrower info + due date and submits reserve request.
+
+### Note Status
+1. reserved -> reduce stock book but borrower not pick up yet
+2. borrowed -> book has been pick up by borrower
+3. returned -> book has been returned by borrower and increase book stock
+4. damaged  -> book has been returned however the book broked/damaged and it will reduce actual book stock
+5. lost     -> book lost and it will reduce actual book
 
