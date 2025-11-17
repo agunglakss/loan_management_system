@@ -1,4 +1,6 @@
 class Api::V1::BooksController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+
   def index
     books = Book.includes(:author, :publisher)
     render json: books.as_json(
@@ -56,5 +58,9 @@ class Api::V1::BooksController < ApplicationController
       :author_id, :publisher_id,
       :total_books, :total_borrow
     )
+  end
+
+  def render_not_found(error)
+    render json: { error: error.model || 'Record', message: 'Not found' }, status: :not_found
   end
 end

@@ -1,4 +1,5 @@
 class Api::V1::LoansController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
   before_action :set_loan, only: [ :show, :pickup, :return, :cancel ]
 
   def index
@@ -73,5 +74,9 @@ class Api::V1::LoansController < ApplicationController
 
   def parse_datetime(val)
     Time.zone.parse(val) rescue nil
+  end
+
+  def render_not_found(error)
+    render json: { error: error.model || 'Record', message: 'Not found' }, status: :not_found
   end
 end

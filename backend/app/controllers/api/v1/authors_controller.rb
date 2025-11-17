@@ -1,4 +1,6 @@
 class Api::V1::AuthorsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+  
   def index
     render json: Author.all
   end
@@ -38,5 +40,9 @@ class Api::V1::AuthorsController < ApplicationController
 
   def author_params
     params.require(:author).permit(:name, :publisher_id)
+  end
+
+  def render_not_found(error)
+    render json: { error: error.model || 'Record', message: 'Not found' }, status: :not_found
   end
 end

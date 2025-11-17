@@ -8,7 +8,7 @@ class Loan < ApplicationRecord
   validate :validate_due_at
 
   scope :active, -> { where(status: [ "reserved", "borrowed" ]) }
-  scope :overdue, -> { where(status: "borrowed").where("due_at < ?", Time.zone.now) }
+  scope :overdue, -> { where(status: "borrowed").where("due_at < ?", Time.current) }
 
   private
 

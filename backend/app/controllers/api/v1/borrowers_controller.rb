@@ -1,4 +1,6 @@
 class Api::V1::BorrowersController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+
   def index
     render json: Borrower.all
   end
@@ -19,5 +21,9 @@ class Api::V1::BorrowersController < ApplicationController
       :name, :address,
       :phone_number, :email
     )
+  end
+
+  def render_not_found(error)
+    render json: { error: error.model || 'Record', message: 'Not found' }, status: :not_found
   end
 end

@@ -3,7 +3,7 @@ FactoryBot.define do
     association :book
     association :borrower
 
-    borrowed_at { Time.zone.now }
+    borrowed_at { Time.current }
     due_at      { 10.days.from_now }
 
     status { "reserved" }
@@ -19,7 +19,7 @@ FactoryBot.define do
 
     trait :returned do
       status { "returned" }
-      returned_at { Time.zone.now }
+      returned_at { Time.current }
     end
 
     trait :lost do
