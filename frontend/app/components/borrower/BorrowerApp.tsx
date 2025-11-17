@@ -28,7 +28,6 @@ export default function BorrowerApp() {
     setLoading(true);
     try {
       const result = await api.getBooks();
-      console.log(result);
       setBooks(result || []);
     } catch (e: any) {
       console.error("Failed to fetch books:", e);

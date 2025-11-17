@@ -1,12 +1,13 @@
 'use client'
 import { useState } from 'react'
 import ReturnModal from './ReturnModal'
+import formatDate from '@/lib/dateFormat'
 
 interface Loan {
   id: number
   status: 'reserved' | 'borrowed' | 'returned' | 'cancelled' | 'lost' | 'damaged'
   due_at: string
-  returned_at?: string | null
+  returned_at: string | null
   borrowed_at: string
   created_at: string
   updated_at: string
@@ -29,14 +30,6 @@ interface LoanRowProps {
 export default function LoanRow({ loan, onPickup, onReturn }: LoanRowProps) {
   const [showReturnModal, setShowReturnModal] = useState(false)
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('id-ID', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    })
-  }
-
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'reserved':
@@ -55,11 +48,11 @@ export default function LoanRow({ loan, onPickup, onReturn }: LoanRowProps) {
     }
   }
 
-  const isOverdue = () => {
-    if (loan.status !== 'borrowed') return false
-    return new Date(loan.due_at) < new Date()
+  const isOnTime = () => {
+    if(!loan.returned_at) return "-";
+    
+    return new Date(loan.due_at) < new Date(loan.returned_at) ? "Yes" : "No"
   }
-
   const handleReturnClick = () => {
     setShowReturnModal(true)
   }
@@ -77,7 +70,10 @@ export default function LoanRow({ loan, onPickup, onReturn }: LoanRowProps) {
         <td className="px-4 py-4 text-left text-gray-500">{loan.returned_at ? formatDate(loan.borrowed_at) : "-"}</td>
         <td className="px-4 py-4 text-left text-gray-500">{formatDate(loan.due_at)}</td>
         <td className="px-4 py-4 text-left text-gray-500">
-          <span className={`px-4 py-1 rounded text-xs font-medium ${getStatusColor(loan.status)}`}>
+          {isOnTime()}
+        </td>
+        <td className="px-4 py-4 text-left text-gray-500">
+          <span className={`px-4 py-1 rounded text-xs font-bold ${getStatusColor(loan.status)}`}>
             {loan.status.toUpperCase()}
           </span>
         </td>
