@@ -65,7 +65,7 @@ export default function ReserveForm({ book, onClose, setMsg }: ReserveFormProps)
         borrower_id: parseInt(borrowerId), 
         due_at: dueAt 
       });
-      setMsg({ type: "success", text: "Reserved successfully" });
+      setMsg({ type: "success", text: "Reserved successfully, you can pick up the book to Admin" });
       onClose();
     } catch (e: any) {
       setError(e.message || "Failed to reserve book");
