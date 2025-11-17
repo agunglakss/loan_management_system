@@ -31,9 +31,17 @@ Before you begin, ensure you have the following installed:
 
 ### 1. Navigate to the backend directory
 
-cd backend### 2. Install Ruby dependencies
-ash
-bundle install### 3. Configure Database
+```bash
+cd backend
+```
+
+### 2. Install Ruby dependencies
+
+```bash
+bundle install
+```
+
+### 3. Configure Database
 
 Update `config/database.yml` with your PostgreSQL credentials if needed. The default configuration uses:
 - Database: `backend_development`
@@ -42,7 +50,7 @@ Update `config/database.yml` with your PostgreSQL credentials if needed. The def
 - Host: 127.0.0.1
 
 ### 4. Create and Setup Database
-
+```bash
 # Create the database
 rails db:create
 
@@ -50,54 +58,35 @@ rails db:create
 rails db:migrate
 
 # (Optional) Load seed data
-rails db:seed### 5. Start the Rails Server
+rails db:seed
+```
 
+### 5. Start the Rails Server
+```bash
 # Start the server (runs on port 4000)
 rails server
-
-# Or use the bin/dev script if available
-bin/devThe API will be available at `http://127.0.0.1:4000`
+```
 
 ## Frontend Setup
 
 ### 1. Navigate to the frontend directory
-h
-cd frontend### 2. Install dependencies
-
-pnpm install### 3. Configure Environment Variables (Optional)
-
-Create a `.env.local` file if you need to customize the API URL:
-
-API_URL=http://127.0.0.1
-PORT=4000### 4. Start the Development Server
-
-pnpm devThe frontend will be available at `http://localhost:3000`
-
-## Running the Full Application
-
-### Terminal 1 - Backend
-
-cd backend
-rails server### Terminal 2 - Frontend
-
+```bash
 cd frontend
-pnpm dev## Database Migrations
-
-### Running Migrations
-
-cd backend
-rails db:migrate### Creating New Migrations
-sh
-rails generate migration MigrationName### Rolling Back Migrations
-
-rails db:rollback### View Migration Status
-
-rails db:migrate:status## Database Seeding
-
-The seed file is located at `backend/db/seeds.rb`. To populate the database with initial data:
-
-cd backend
-rails db:seed## API Endpoints
+```
+### 2. Install dependencies
+```bash
+pnpm install
+```
+### 3. Configure Environment Variables (Optional)
+Create a `.env.local` file if you need to customize the API URL:
+```bash
+API_URL=http://127.0.0.1
+PORT=4000
+```
+### 4. Start the Development Server
+```bash
+pnpm devThe frontend will be available at `http://localhost:3000`
+```
 
 The API is available at `http://127.0.0.1:4000/api/v1/`
 
@@ -140,14 +129,12 @@ The API is available at `http://127.0.0.1:4000/api/v1/`
 ## Testing
 
 ### Backend Tests (RSpec)
-
+```bash
 cd backend
-bundle exec rspecRun specific test files:
-
-bundle exec rspec spec/services/loans/reserve_service_spec.rb### Frontend Linting
-
-cd frontend
-pnpm lint## Development Workflow
+```
+```bash
+bundle exec rspec
+```
 
 1. **Start PostgreSQL** (if not running as a service)
 2. **Start Backend**: `cd backend && rails server`
