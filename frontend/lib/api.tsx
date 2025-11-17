@@ -1,8 +1,7 @@
-const BASE = (process.env.API_URL || "http://127.0.0.1") + ":" + (process.env.PORT || "4000");
+const BASE = (process.env.API_URL || "http://localhost") + ":" + (process.env.PORT || "4000");
 
 async function jsonFetch(path: string, opts = {}) {
   const res = await fetch(`${BASE}${path}`, {
-    credentials: "include",
     headers: { "Content-Type": "application/json" },
     ...opts,
   });
