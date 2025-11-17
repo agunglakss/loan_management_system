@@ -85,7 +85,7 @@ PORT=4000
 ```
 ### 4. Start the Development Server
 ```bash
-pnpm devThe frontend will be available at `http://localhost:3000`
+pnpm dev
 ```
 
 The API is available at `http://127.0.0.1:4000/api/v1/`
